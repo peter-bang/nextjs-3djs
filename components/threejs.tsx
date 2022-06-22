@@ -20,10 +20,9 @@ const ThreeJS = () => {
       const light = new THREE.DirectionalLight(0xffffff, 10);
       scene.add(light);
       const controls = new OrbitControls(camera, renderer.domElement);
+      controls.update();
       loader.load("/scene.gltf", (object) => {
         scene.add(object.scene);
-        camera.position.set(0, 20, 100);
-        controls.update();
         const animate = () => {
           requestAnimationFrame(animate);
           object.scene.rotation.y += 0.01;
