@@ -5,6 +5,7 @@ import tw, { styled } from "twin.macro";
 import React, { ReactElement, ReactNode } from "react";
 import Layout from "../components/Layout";
 import ThreeJS from "../components/threejs";
+import ThreeJS_TrackballControls from "../components/threejs_trackballcontrols";
 
 export const getServerSideProps = async () => {
   const res = await fetch("http://localhost:3000/api/hello");
@@ -18,6 +19,11 @@ export const getServerSideProps = async () => {
     props: data,
   };
 };
+
+const TDContrainer = tw.div`
+flex
+justify-center
+`;
 
 type NextPageWithLayout<T> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactElement;
@@ -35,7 +41,10 @@ const Home: NextPageWithLayout<{ name: string }> = ({ name }) => {
       </Head>
       <main>
         <h1>안녕 여러분!!</h1>
-        <ThreeJS></ThreeJS>
+        <TDContrainer>
+          <ThreeJS></ThreeJS>
+          <ThreeJS_TrackballControls></ThreeJS_TrackballControls>
+        </TDContrainer>
       </main>
     </MainContainer>
   );

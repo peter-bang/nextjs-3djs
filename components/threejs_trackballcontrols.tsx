@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
 
-const ThreeJS = () => {
+const ThreeJS_TrackballControls = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (canvasRef.current) {
@@ -19,7 +19,7 @@ const ThreeJS = () => {
       scene.background = new THREE.Color("white");
       const light = new THREE.DirectionalLight(0xffffff, 10);
       scene.add(light);
-      const controls = new OrbitControls(camera, renderer.domElement);
+      const controls = new TrackballControls(camera, renderer.domElement);
       controls.update();
       loader.load("/scene.gltf", (object) => {
         scene.add(object.scene);
@@ -37,9 +37,9 @@ const ThreeJS = () => {
   return (
     <div>
       <canvas ref={canvasRef} id="canvas" width="300" height="300"></canvas>
-      <h1>orbitcontrols</h1>
+      <h1>trackballcontrols</h1>
     </div>
   );
 };
 
-export default ThreeJS;
+export default ThreeJS_TrackballControls;
